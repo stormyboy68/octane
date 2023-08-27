@@ -1,25 +1,3 @@
-<?php
-$file_url = './1.zip';
-$save_path = '1.zip';
-
-// تابع برای دانلود فایل
-function downloadFile($url, $save_path) {
-    $file = fopen($save_path, 'w');
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_FILE, $file);
-    $success = curl_exec($ch);
-    curl_close($ch);
-    fclose($file);
-    
-    if ($success) {
-        echo "فایل با موفقیت دانلود شد و در $save_path ذخیره شد.";
-    } else {
-        echo "مشکلی در دانلود فایل به وجود آمد.". curl_error($ch);
-    }
-}
-
-downloadFile($file_url, $save_path);
-?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -39,7 +17,6 @@ downloadFile($file_url, $save_path);
         </style>
     </head>
     <body class="antialiased">
-<a href="./1.zip" download>دانلود فایل</a>
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
